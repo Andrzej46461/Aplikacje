@@ -21,9 +21,9 @@ class Pojazd {
             this->przebieg=przebieg;
             this->dostepnosc=dostepnosc;
         }
-    void wyswietlInformacje() const;
-    bool czyDostepny() const;
-    void ustawDestepnosc(bool nowyStan);
+    void wyswietlInformacje() const; //zrobione
+    bool czyDostepny() const; //zrobione
+    void ustawDostepnosc(bool nowyStan);//zrobione
     void ustawPrzebieg(int km);
 
     int getRok() const;
@@ -46,10 +46,10 @@ class Wypozyczalnia{
     
     public:
         Wypozyczalnia();
-        void dodajPojazd(const Pojazd& p);
-        void pokazDostepne() const;
-        void pokazSzczegoly(int index) const;
-        void zarezerwuj(int index);
+        void dodajPojazd(const Pojazd& p);//zrobione
+        void pokazDostepne() const;//zrobione
+        void pokazSzczegoly(int index) const;//zrobione
+        void zarezerwuj(int index);//zrobione
         void anulujRezerwacje(int index);
 
 

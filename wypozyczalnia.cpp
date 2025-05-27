@@ -41,6 +41,10 @@ int Pojazd::getPrzebieg() const {
     return przebieg;
 }
 
+void Pojazd::ustawDostepnosc(bool nowyStan) {
+    dostepnosc = nowyStan;
+}
+
 
 Wypozyczalnia::Wypozyczalnia() {
 
@@ -70,6 +74,21 @@ void Wypozyczalnia::pokazSzczegoly(int id) const{
         pojazdy[id].wyswietlInformacje();
     } else {
         cout << "Nieprawidlowy numer pojazdu!" << endl;
+    }
+
+}
+
+void Wypozyczalnia::zarezerwuj(int index) {
+    if (index <0 || index >= pojazdy.size()) {
+        cout << "Nieprawidlowy indeks pojzadu!" << endl;
+        return;
+    }
+
+    if(pojazdy[index].czyDostepny()) {
+        pojazdy[index].ustawDostepnosc(false);
+        cout << "Pojazd: " << pojazdy[index].getNrRejestracyjny() << " zostal zarezerwowany." << endl;
+    } else {
+        cout << "Pojazd: " << pojazdy[index].getNrRejestracyjny() << " jest juz niedostepny" << endl;
     }
 
 }
