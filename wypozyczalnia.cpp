@@ -4,12 +4,6 @@
 #include <ctime>       // time()
 #include <random>      // lepsze losowanie
 
-/*             cout <<"Rok: " << pojazdy[id].getRok() 
-             << ", Numer Rejestracyjny: " << pojazdy[id].getNrRejestracyjny() 
-             << ", Marka: " << pojazdy[id].getMarka() 
-             << ", Model: " << pojazdy[id].getModel()     
-             << ", Przebieg: " << pojazdy[id].getPrzebieg() 
-*/
 
 using namespace std;
 
@@ -57,11 +51,12 @@ void Wypozyczalnia::dodajPojazd(const Pojazd& p){
     pojazdy.push_back(p);
 }
 
-void Wypozyczalnia::pokazDostepne() const{
+void Wypozyczalnia::pokazDostepne() const{ //uzyte
     
     for(int i=0; i < pojazdy.size(); ++i){
         if (pojazdy[i].czyDostepny()){
-            cout <<"Rok: " << pojazdy[i].getRok() 
+            cout << "ID - [" << i << "], "
+                 << "Rok: " << pojazdy[i].getRok() 
                  << ", Numer Rejestracyjny: " << pojazdy[i].getNrRejestracyjny() 
                  << ", Marka: " << pojazdy[i].getMarka() 
                  << endl;
@@ -69,7 +64,7 @@ void Wypozyczalnia::pokazDostepne() const{
     }
 }
 
-void Wypozyczalnia::pokazSzczegoly(int id) const{
+void Wypozyczalnia::pokazSzczegoly(int id) const{ //uzyte
     if (id >= 0 && id < pojazdy.size()){
         pojazdy[id].wyswietlInformacje();
     } else {
@@ -89,6 +84,50 @@ void Wypozyczalnia::zarezerwuj(int index) {
         cout << "Pojazd: " << pojazdy[index].getNrRejestracyjny() << " zostal zarezerwowany." << endl;
     } else {
         cout << "Pojazd: " << pojazdy[index].getNrRejestracyjny() << " jest juz niedostepny" << endl;
+    }
+
+}
+
+void Wypozyczalnia::anulujRezerwacje(int index) {
+    if (index < 0 || index >= pojazdy.size()) {
+        cout << "Nieprawidlowy indeks pojazdu!" << endl;
+        return;
+    }
+
+    if(!pojazdy[index].czyDostepny()) {
+        pojazdy[index].ustawDostepnosc(true);
+        cout << "Rezerwacja: " << pojazdy[index].getNrRejestracyjny() << "została anulowana." << endl;
+    } else {
+        cout << "Blad, pojazd: " <<pojazdy[index].getNrRejestracyjny() << "jest aktualnie niezarezerwowany"<< endl;
+    }
+}
+
+void Pojazd::przebiegZwrot(int km){
+    if (km > 0) {
+        przebieg += km;
+    } else {
+        std::cout << "Bledna liczba kilometrow." << endl;
+    }
+}
+
+void Wypozyczalnia::zakonczWypozyczenie(int index) {
+    if(index < 0 || index >= pojazdy.size()) {
+        cout << "Nieprawidlowy indeks pojazdu!" << endl;
+        return;
+    }
+
+    if(!pojazdy[index].czyDostepny()){
+        int km;
+
+        cout << "Ile kilometrow przejechano podczas wypozyczenia?";
+        cin >> km;
+
+        pojazdy[index].przebiegZwrot(km);
+        pojazdy[index].ustawDostepnosc(true);
+
+        cout << "Wypozyczenie pojazdu " << pojazdy[index].getNrRejestracyjny() << " zostalo zakonczone. Przebieg zaktualizowany.\n Dziekuje." << endl; 
+    } else {
+        cout << "Ten pojazd nie jest aktualnie wypozyczony." << endl;
     }
 
 }

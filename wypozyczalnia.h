@@ -24,7 +24,7 @@ class Pojazd {
     void wyswietlInformacje() const; //zrobione
     bool czyDostepny() const; //zrobione
     void ustawDostepnosc(bool nowyStan);//zrobione
-    void ustawPrzebieg(int km);
+    void przebiegZwrot(int km);
 
     int getRok() const;
     std::string getNrRejestracyjny() const;
@@ -51,6 +51,5 @@ class Wypozyczalnia{
         void pokazSzczegoly(int index) const;//zrobione
         void zarezerwuj(int index);//zrobione
         void anulujRezerwacje(int index);
-
-
+        void zakonczWypozyczenie(int index);
 };
