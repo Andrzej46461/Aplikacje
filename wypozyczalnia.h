@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <memory>     // jeśli użyjesz std::shared_ptr lub std::unique_ptr
+#include <memory>     // std::shared_ptr 
 #include <iostream> 
 
 class Pojazd {
@@ -21,10 +21,12 @@ class Pojazd {
             this->przebieg=przebieg;
             this->dostepnosc=dostepnosc;
         }
-    void wyswietlInformacje() const; //zrobione
+    //void wyswietlInformacje() const; //teraz uzywam virtual void wyswietlInformacje()...
     bool czyDostepny() const; //zrobione
     void ustawDostepnosc(bool nowyStan);//zrobione
-    void przebiegZwrot(int km);
+    void przebiegZwrot(int km);//zrobione
+    virtual void wyswietlInformacje() const;
+
 
     int getRok() const;
     std::string getNrRejestracyjny() const;
@@ -42,14 +44,30 @@ pojazdy.size()             // liczba pojazdow
 pojazdy.clear()            // usun wszystko*/
 class Wypozyczalnia{
     private:
-        std::vector<Pojazd> pojazdy;
+        //std::vector<Pojazd> pojazdy;
+        std::vector<std::shared_ptr<Pojazd>> pojazdy; 
     
     public:
         Wypozyczalnia();
-        void dodajPojazd(const Pojazd& p);//zrobione
+        void dodajPojazd(std::shared_ptr<Pojazd> p);//zrobione
         void pokazDostepne() const;//zrobione
         void pokazSzczegoly(int index) const;//zrobione
         void zarezerwuj(int index);//zrobione
-        void anulujRezerwacje(int index);
-        void zakonczWypozyczenie(int index);
+        void anulujRezerwacje(int index); //zrrobione
+        void zakonczWypozyczenie(int index); //zrobione
+        void usunPojazd(int index); //zrobione
+};
+
+class PojazdPremium : public Pojazd {
+public:
+    PojazdPremium(int rok, std::string nrRej, std::string marka, std::string model, int przebieg, bool dostepnosc);
+
+    void wyswietlInformacje() const override;
+
+};
+
+class PojazdSportowy : public Pojazd {
+public:
+    PojazdSportowy(int rok, std::string nrRej, std::string marka, std::string model, int przebieg, bool dostepnosc);
+    void wyswietlInformacje() const override;
 };

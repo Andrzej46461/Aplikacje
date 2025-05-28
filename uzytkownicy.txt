@@ -1,0 +1,2 @@
+admin1;adminpass;admin
+user1;userpass;user
