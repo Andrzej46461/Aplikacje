@@ -56,6 +56,8 @@ class Wypozyczalnia{
         void anulujRezerwacje(int index); //zrrobione
         void zakonczWypozyczenie(int index); //zrobione
         void usunPojazd(int index); //zrobione
+
+        const std::vector<std::shared_ptr<Pojazd>>& getPojazdy() const;
 };
 
 class PojazdPremium : public Pojazd {
@@ -70,4 +72,20 @@ class PojazdSportowy : public Pojazd {
 public:
     PojazdSportowy(int rok, std::string nrRej, std::string marka, std::string model, int przebieg, bool dostepnosc);
     void wyswietlInformacje() const override;
+};
+
+class KontrolaSystemowa {
+public:
+    virtual void wykonajKontrole(const Pojazd& pojazd) const = 0;
+    virtual ~KontrolaSystemowa() = default;
+};
+
+class KontrolaPrzebiegu : public KontrolaSystemowa {
+public:
+    void wykonajKontrole(const Pojazd& pojazd) const override;
+};
+
+class KontrolaDostepnosci : public KontrolaSystemowa {
+public:
+    void wykonajKontrole(const Pojazd& pojazd) const override;
 };

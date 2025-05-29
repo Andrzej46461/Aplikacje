@@ -172,3 +172,19 @@ void Wypozyczalnia::usunPojazd(int index) {
     cout << "Pojazd " << pojazdy[index]->getMarka() << " " << pojazdy[index]->getNrRejestracyjny() << " zostal usuniety." << endl;
     pojazdy.erase(pojazdy.begin() + index);
 }
+
+void KontrolaPrzebiegu::wykonajKontrole(const Pojazd& pojazd) const {
+    if (pojazd.getPrzebieg() > 300000) {
+        cout << "!!! Pojazd o numerze rejestracyjnym: " << pojazd.getNrRejestracyjny() << " ma wysoki przebieg!\n";
+    }
+}
+
+void KontrolaDostepnosci::wykonajKontrole(const Pojazd& pojazd) const {
+    if (!pojazd.czyDostepny()) {
+        cout << "Pojazd " << pojazd.getNrRejestracyjny() << "jest nieostepny.\n";
+    }
+}
+
+const vector<shared_ptr<Pojazd>>& Wypozyczalnia::getPojazdy() const {
+    return pojazdy;
+}

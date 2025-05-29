@@ -177,6 +177,27 @@ using namespace std;
 
    }
 
+   void testKontrole(const vector<shared_ptr<Pojazd>>& pojazdy){
+      const int ile = 2;
+      KontrolaSystemowa** kontrole = new KontrolaSystemowa*[ile];
+
+      kontrole[0] = new KontrolaPrzebiegu();
+      kontrole[1] = new KontrolaDostepnosci();
+
+      cout << "\n Wyniki kontroli systemowej \n";
+
+      for (const auto& p: pojazdy) {
+         for (int i = 0; i < ile; ++i) {
+            kontrole[i]->wykonajKontrole(*p);
+         }
+      }
+
+      for (int i = 0; i < ile; ++i)
+         delete kontrole[i];
+
+      delete[] kontrole;
+   }
+
  int main(){
    Uzytkownik u = zaloguj();
    if(u.rola == "brak") return 1;
@@ -184,6 +205,7 @@ using namespace std;
    Wypozyczalnia wyp;
 
    if (u.rola == "admin") {
+      testKontrole(wyp.getPojazdy());
       menuAdmina(wyp);
    } else {
       menuUzytkownika(wyp);
