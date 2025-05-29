@@ -1,68 +1,62 @@
 #include "wypozyczalnia.h"
-#include <iomanip>     // jeśli będziesz używać setw(), setfill()
-#include <cstdlib>     // np. rand(), srand()
-#include <ctime>       // time()
-#include <random>      // lepsze losowanie
 #include <memory>     
 
 
 using namespace std;
 
 
-void Pojazd::wyswietlInformacje() const{//uzyte
+void Pojazd::wyswietlInformacje() const{
     cout<<"Rok: " << rok << ", Numer Rejestracyjny: " << nrRejestracyjny << ", Marka: " << marka << ", Model: " << model << ", Przebieg: " << przebieg << ", Dostepnosc: " << (dostepnosc ? "Dostepny" : "Niedostepny") << endl;
 }
-bool Pojazd::czyDostepny() const{//uzyte
+bool Pojazd::czyDostepny() const{
     return dostepnosc;
 }
 
-int Pojazd::getRok() const {//uzyte
+int Pojazd::getRok() const {
     return rok;
 }
 
-string Pojazd::getNrRejestracyjny() const {//uzyte
+string Pojazd::getNrRejestracyjny() const {
     return nrRejestracyjny;
 }
 
-string Pojazd::getMarka() const {//uzyte
+string Pojazd::getMarka() const {
     return marka;
 }
 
-string Pojazd::getModel() const {//uzyte
+string Pojazd::getModel() const {
     return model;
 }
 
-int Pojazd::getPrzebieg() const {//uzyte
+int Pojazd::getPrzebieg() const {
     return przebieg;
 }
 
-void Pojazd::ustawDostepnosc(bool nowyStan) {//uzyte
+void Pojazd::ustawDostepnosc(bool nowyStan) {
     dostepnosc = nowyStan;
 }
 
 
-Wypozyczalnia::Wypozyczalnia() { //uzyte
+Wypozyczalnia::Wypozyczalnia() {
 
     pojazdy.push_back(std::make_shared<Pojazd>(2004, "ZS167PC", "Audi", "A4", 400000, true));
     pojazdy.push_back(std::make_shared<Pojazd>(2015, "DW12345", "BMW", "320i", 120000, true));
     pojazdy.push_back(std::make_shared<Pojazd>(2020, "KR56789", "Toyota", "Corolla", 80000, true));
 
-    //linia premium
 
     pojazdy.push_back(std::make_shared<PojazdPremium>(2022, "WW0001", "Mercedes", "S klasa", 12000, true));
     pojazdy.push_back(std::make_shared<PojazdPremium>(2023, "PO777", "Porsche", "Panamera", 10000, true));
 
-    //linia sport 
 
     pojazdy.push_back(std::make_shared<PojazdSportowy>(2024, "ZS26AWJ", "Porsche", "911 GT3 RS", 1300, true));
     pojazdy.push_back(std::make_shared<PojazdSportowy>(2024, "GA651WZ", "Ferrari", "F80", 300, true));
 }
 
-void Wypozyczalnia::dodajPojazd(std::shared_ptr<Pojazd> p){ //uzyte
+void Wypozyczalnia::dodajPojazd(std::shared_ptr<Pojazd> p){ 
     pojazdy.push_back(p);
 }
 
-void Wypozyczalnia::pokazDostepne() const{ //uzyte
+void Wypozyczalnia::pokazDostepne() const{
     
     for(int i=0; i < pojazdy.size(); ++i){
         if (pojazdy[i]->czyDostepny()){
@@ -75,7 +69,7 @@ void Wypozyczalnia::pokazDostepne() const{ //uzyte
     }
 }
 
-void Wypozyczalnia::pokazSzczegoly(int id) const{ //uzyte
+void Wypozyczalnia::pokazSzczegoly(int id) const{
     if (id >= 0 && id < pojazdy.size()){
         pojazdy[id]->wyswietlInformacje();
     } else {
@@ -84,7 +78,7 @@ void Wypozyczalnia::pokazSzczegoly(int id) const{ //uzyte
 
 }
 
-void Wypozyczalnia::zarezerwuj(int index) { //uzyte
+void Wypozyczalnia::zarezerwuj(int index) {
     if (index <0 || index >= pojazdy.size()) {
         cout << "Nieprawidlowy indeks pojzadu!" << endl;
         return;
@@ -104,7 +98,7 @@ void Wypozyczalnia::zarezerwuj(int index) { //uzyte
 
 }
 
-void Wypozyczalnia::anulujRezerwacje(int index) { //uzyte
+void Wypozyczalnia::anulujRezerwacje(int index) {
     if (index < 0 || index >= pojazdy.size()) {
         cout << "Nieprawidlowy indeks pojazdu!" << endl;
         return;
@@ -118,7 +112,7 @@ void Wypozyczalnia::anulujRezerwacje(int index) { //uzyte
     }
 }
 
-void Pojazd::przebiegZwrot(int km){ //uzyte
+void Pojazd::przebiegZwrot(int km){
     if (km > 0) {
         przebieg += km;
     } else {
@@ -126,7 +120,7 @@ void Pojazd::przebiegZwrot(int km){ //uzyte
     }
 }
 
-void Wypozyczalnia::zakonczWypozyczenie(int index) { //uzyte
+void Wypozyczalnia::zakonczWypozyczenie(int index) {
     if(index < 0 || index >= pojazdy.size()) {
         cout << "Nieprawidlowy indeks pojazdu!" << endl;
         return;

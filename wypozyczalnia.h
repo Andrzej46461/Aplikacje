@@ -22,9 +22,9 @@ class Pojazd {
             this->dostepnosc=dostepnosc;
         }
     //void wyswietlInformacje() const; //teraz uzywam virtual void wyswietlInformacje()...
-    bool czyDostepny() const; //zrobione
-    void ustawDostepnosc(bool nowyStan);//zrobione
-    void przebiegZwrot(int km);//zrobione
+    bool czyDostepny() const; 
+    void ustawDostepnosc(bool nowyStan);
+    void przebiegZwrot(int km);
     virtual void wyswietlInformacje() const;
 
 
@@ -44,18 +44,17 @@ pojazdy.size()             // liczba pojazdow
 pojazdy.clear()            // usun wszystko*/
 class Wypozyczalnia{
     private:
-        //std::vector<Pojazd> pojazdy;
         std::vector<std::shared_ptr<Pojazd>> pojazdy; 
     
     public:
         Wypozyczalnia();
-        void dodajPojazd(std::shared_ptr<Pojazd> p);//zrobione
-        void pokazDostepne() const;//zrobione
-        void pokazSzczegoly(int index) const;//zrobione
-        void zarezerwuj(int index);//zrobione
-        void anulujRezerwacje(int index); //zrrobione
-        void zakonczWypozyczenie(int index); //zrobione
-        void usunPojazd(int index); //zrobione
+        void dodajPojazd(std::shared_ptr<Pojazd> p);
+        void pokazDostepne() const;
+        void pokazSzczegoly(int index) const;
+        void zarezerwuj(int index);
+        void anulujRezerwacje(int index);
+        void zakonczWypozyczenie(int index);
+        void usunPojazd(int index);
 
         const std::vector<std::shared_ptr<Pojazd>>& getPojazdy() const;
 };
