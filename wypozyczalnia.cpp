@@ -83,7 +83,8 @@ void Wypozyczalnia::zarezerwuj(int index) {
         cout << "Nieprawidlowy indeks pojzadu!" << endl;
         return;
     }
-
+//zmodyfikuj funkcje - POLIMORFIZM 
+//przeciazanie operatow 
     if(pojazdy[index]->czyDostepny()) {
         pojazdy[index]->ustawDostepnosc(false);
         if(std::dynamic_pointer_cast<PojazdPremium>(pojazdy[index])){
