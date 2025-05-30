@@ -184,14 +184,24 @@ const vector<shared_ptr<Pojazd>>& Wypozyczalnia::getPojazdy() const {
     return pojazdy;
 }
 
-void Pojazd::naliczOplate(int dni) const {
+void Pojazd::naliczOplate(int dni) const { //NOWA POLIMORFIZM
     std::cout << "Koszt wypozyczenia (" << dni << " dni): " << dni * 150 << " PLN" << std::endl;
 }
 
-void PojazdPremium::naliczOplate(int dni) const {
+void PojazdPremium::naliczOplate(int dni) const { //NOWA POLIMORFIZM
     std::cout << "Koszt wypozyczenia (PREMIUM) na " << dni << " dni: " << dni * 300 << " PLN" << std::endl;
 }
 
-void PojazdSportowy::naliczOplate(int dni) const {
+void PojazdSportowy::naliczOplate(int dni) const { //NOWA POLIMORFIZM
     std::cout << "Koszt wypozyczenia (SPORTOWY) na " << dni << " dni: " << dni * 400 << " PLN" << std::endl;
+}
+
+ostream& operator<<(std::ostream& os, const Pojazd& p) { //przeciazenie operatora
+    os << "Rok: " << p.getRok()
+       << ", Rejestracja: " << p.getNrRejestracyjny()
+       << ", Marka: " << p.getMarka()
+       << ", Model: " << p.getModel()
+       << ", Przebieg: " << p.getPrzebieg()
+       << ", Dostepnosc: " << (p.czyDostepny() ? "Dostepny" : "Niedostepny");
+    return os;
 }

@@ -36,8 +36,10 @@ class Pojazd {
     std::string getMarka() const;
     std::string getModel() const;
     int getPrzebieg() const;
-    bool getDostepnosc() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Pojazd& p); //przeciazenie operatora
+
 
 /*std::vector   
 pojazdy.push_back(p);      // dodaj pojazd

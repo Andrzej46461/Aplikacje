@@ -109,6 +109,7 @@ using namespace std;
          cout << "5. Zakoncz rezerwacje\n";
          cout << "6. Dodaj pojazd\n";
          cout << "7. Usun pojazd\n";
+         cout << "8. Pokaz szczegoly - przeciazony operator\n";
          cout << "0. Wyjscie\n";
          cout << "\nTwoj wybor: ";
          cin >> wybor;
@@ -170,6 +171,11 @@ using namespace std;
                wyp.usunPojazd(id);
                break;
             }
+            case 8:
+            cout << "Podaj ID pojazdu: ";
+            cin >> id;
+            cout << *wyp.getPojazdy()[id] << std::endl;//przeciazony operator
+            break;
             case 0: 
                cout << "Do zobaczenia!" << endl;
                break;
