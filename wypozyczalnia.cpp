@@ -146,7 +146,7 @@ void Wypozyczalnia::zakonczWypozyczenie(int index) {
 PojazdPremium::PojazdPremium(int rok, string nrRej, string marka, string model, int przebieg, bool dostepnosc)
     :Pojazd(rok, nrRej, marka, model, przebieg, dostepnosc) {}
 
-    void PojazdPremium::wyswietlInformacje() const{
+    void PojazdPremium::wyswietlInformacje() const{//<-Tutaj
         cout << "[PREMIUM]";
         Pojazd::wyswietlInformacje();
     }
@@ -154,7 +154,7 @@ PojazdPremium::PojazdPremium(int rok, string nrRej, string marka, string model, 
 PojazdSportowy::PojazdSportowy(int rok,string nrRej, string marka, string model, int przebieg, bool dostepnosc)
     :Pojazd(rok, nrRej, marka, model, przebieg, dostepnosc) {}
 
-    void PojazdSportowy::wyswietlInformacje() const{
+    void PojazdSportowy::wyswietlInformacje() const{//<-Tutaj
         cout << "[SPORT]";
         Pojazd::wyswietlInformacje();
     }
@@ -182,4 +182,16 @@ void KontrolaDostepnosci::wykonajKontrole(const Pojazd& pojazd) const {
 
 const vector<shared_ptr<Pojazd>>& Wypozyczalnia::getPojazdy() const {
     return pojazdy;
+}
+
+void Pojazd::naliczOplate(int dni) const {
+    std::cout << "Koszt wypozyczenia (" << dni << " dni): " << dni * 150 << " PLN" << std::endl;
+}
+
+void PojazdPremium::naliczOplate(int dni) const {
+    std::cout << "Koszt wypozyczenia (PREMIUM) na " << dni << " dni: " << dni * 300 << " PLN" << std::endl;
+}
+
+void PojazdSportowy::naliczOplate(int dni) const {
+    std::cout << "Koszt wypozyczenia (SPORTOWY) na " << dni << " dni: " << dni * 400 << " PLN" << std::endl;
 }

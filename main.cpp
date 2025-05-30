@@ -112,7 +112,7 @@ using namespace std;
          cout << "0. Wyjscie\n";
          cout << "\nTwoj wybor: ";
          cin >> wybor;
-         
+         int dni;
          int id;
          switch(wybor){
             case 1:
@@ -129,6 +129,8 @@ using namespace std;
                int id;
                cout << "Podaj ID pojazdu do rezerwacji: ";
                cin >> id;
+               cout << "Na ile dni: ";
+               cin >> dni;
                wyp.zarezerwuj(id);
                break;
             }
@@ -144,6 +146,7 @@ using namespace std;
                cout << "Podaj ID pojazdu do zakonczenia wypozyczenia: ";
                cin >> id;
                wyp.zakonczWypozyczenie(id);
+               wyp.getPojazdy().at(id)->naliczOplate(dni);
                break;
             }
             case 6: {

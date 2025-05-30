@@ -12,6 +12,7 @@ class Pojazd {
         std::string model;
         int przebieg;
         bool dostepnosc;
+        int dni;
     public:
         Pojazd(int rok,std::string nrRej,std::string marka,std::string mod,int przebieg,bool dostepnosc) {
             this->rok=rok;
@@ -26,6 +27,8 @@ class Pojazd {
     void ustawDostepnosc(bool nowyStan);
     void przebiegZwrot(int km);
     virtual void wyswietlInformacje() const;
+    virtual void naliczOplate(int dni) const;
+
 
 
     int getRok() const;
@@ -55,6 +58,8 @@ class Wypozyczalnia{
         void anulujRezerwacje(int index);
         void zakonczWypozyczenie(int index);
         void usunPojazd(int index);
+        
+        
 
         const std::vector<std::shared_ptr<Pojazd>>& getPojazdy() const;
 };
@@ -64,6 +69,7 @@ public:
     PojazdPremium(int rok, std::string nrRej, std::string marka, std::string model, int przebieg, bool dostepnosc);
 
     void wyswietlInformacje() const override;
+    void naliczOplate(int dni) const override;
 
 };
 
@@ -71,6 +77,7 @@ class PojazdSportowy : public Pojazd {
 public:
     PojazdSportowy(int rok, std::string nrRej, std::string marka, std::string model, int przebieg, bool dostepnosc);
     void wyswietlInformacje() const override;
+    void naliczOplate(int dni) const override;
 };
 
 class KontrolaSystemowa {
